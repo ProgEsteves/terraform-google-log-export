@@ -32,3 +32,11 @@ module "log_export" {
   parent_resource_id = google_project.computed.project_id
   project_id         = google_project.computed.project_id
 }
+  
+resource "google_project_service" "project" {
+  project = google_project.computed.id
+  service = "logging.googleapis.com"
+
+  disable_dependent_services = false
+  disable_on_destroy = false
+}
